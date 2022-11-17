@@ -32,6 +32,7 @@ body {
     height: 70rem;
     margin-top: 6rem;
     padding: 50px;
+    justify-content: center;
 }
 
 .title {
@@ -42,7 +43,7 @@ body {
     justify-content: center;
 }
 
-.test{
+.sidebar{
     display: flex;
     /* border: 1px solid blue; */
     width: 100%;
@@ -52,6 +53,7 @@ body {
 
 .inputs{
     display: flex;
+    /* border: 1px solid blue; */
     flex-direction: column;
     gap: 50px;
     margin-top: 50px;
@@ -72,3 +74,70 @@ body {
     gap: 50px;
 }
 
+[id^="book_"]{
+    /* border: 1px solid white; */
+    height: 10rem;
+    width: 10rem;
+}
+
+.popup{
+
+}
+
+.inputelements{
+    border: 2px solid rgb(7, 0, 0);
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    margin-top: 2rem;
+    gap: 2rem;
+    font-size: 25px;
+    width: 30rem;
+    color: black;
+}
+
+
+.bookadd{
+    display: flex;
+    margin-top: 10%;
+    /* border: 1px solid green; */
+    justify-content: center;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 180px;
+    height: 50px;
+    
+    background-color: var(--light-theme);
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(254, 240, 255);
+
+  
+    text-align: center;
+    overflow: hidden;
+  
+    border-radius: 5px;
+    box-shadow: 0 6px 30px -10px rgba(#b3a6a6, 1);
+    
+}
+
+.textlabel{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+input{
+    width: 100%;
+    height: 2rem;
+    font-size: 20px;
+}

@@ -14,36 +14,39 @@
             <div class="title">
                 <h1>Libary</h1>
             </div>
-            <div class="test">
+            <div class="sidebar">
                 <div class="inputs">
-                    <div>
-                        <label for="title" >Title:</label>
-                        <input required id="title" type="text"></input>
-                    </div>
-                    
-                    <div>
-                        <label for="title" >Author:</label>
-                        <input required id="author" type="text"></input>
-                    </div>
-                    <div>
-                        <label for="title" >Pages:</label>
-                        <input id="pages" type="number"></input>
-                    </div>
-                    <div>
-                        <label for="title" >Read:</label>
-                        <input required id="read" type="checkbox"></input>
-                    </div>
                     <div id="addbutton">
                         <button>Add a book</button>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
         <div class="body">
             <div class="books">
+            </div>
+            <div class="popup">
+                <form onsubmit="return mySubmitFunction(event)">
+                    <div class="inputelements">
+                        <div>
+                            <div class="textlabel">Title: </div>
+                            <input required type="text" id="title">
+                        </div>
+                        <div>
+                            <div class="textlabel">Author: </div>
+                            <input required type="text" id="author">
+                        </div>
+                        <div>
+                            <div class="textlabel">Pages: </div>
+                            <input type="number" id="pages">
+                        </div>
+                        <div>
+                            <div class="textlabel">Read: </div>
+                            <input required type="checkbox" id="read">
+                        </div>
+                    </div>
+                    <div class="bookadd"><button id="book_to_add">Add this book</button></div>
+                </form>
             </div>
         </div>
     </div>

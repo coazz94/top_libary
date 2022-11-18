@@ -77,23 +77,24 @@ function loadBooks(){
         let book_el = document.createElement("div");
         book_el.className=`card book_${i+1}`;
 
-        let test = document.createElement("div");
-        test.className=`card-body`;
+        // new cardbody
+        let card_body = document.createElement("div");
+        card_body.className=`card-body`;
 
         // make a card element fot each book
-        book_el.innerHTML = `
-        <div class="card-body">
+        card_body.innerHTML = `
           <h5 class="card-title">${book.title}</h5>
           <p class="card-text">Author: ${book.author} </p>
           <p class="card-text">Pages: ${pages} </p>
           <p class="card-text"> ${read}</p>
-        </div>
         `
         // make the buttons
         let buttons = makeButtonsForCard(id);
 
+        card_body.append(buttons)
+
         // append them to the card
-        book_el.append(buttons)
+        book_el.append(card_body)
 
         // append the card to the books div
         books_div.append(book_el)

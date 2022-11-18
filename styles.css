@@ -22,14 +22,15 @@ body {
     /* border: 1px solid orange; */
     width: 20rem;
     height: 70rem;
+    margin-top: 10px;
     flex-direction: column;
 }
 
 .body{
     display: flex;
-    border: 1px solid rgb(116, 255, 23);
+    border: 1px solid rgb(211, 234, 5);
     width: 100%;
-    height: 70rem;
+    height: 50rem;
     margin-top: 6rem;
     padding: 50px;
     justify-content: center;
@@ -72,17 +73,16 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-}
+    border: 1px solid green;
+    width: 100%;
 
-[id^="book_"]{
-    /* border: 1px solid white; */
-    height: 10rem;
-    width: 10rem;
 }
 
 .popup{
-
+    display: flex;
 }
+
+
 
 .inputelements{
     border: 2px solid rgb(7, 0, 0);
@@ -107,7 +107,7 @@ body {
     justify-content: center;
 }
 
-button {
+button, #book_to_add {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,4 +140,38 @@ input{
     width: 100%;
     height: 2rem;
     font-size: 20px;
+}
+
+.popup{
+    position: absolute;
+}
+
+#infotext{
+
+    display: flex;
+    /* border: 1px solid black; */
+    margin-top: 2rem;
+    width: 15rem;
+    margin-left: 5rem;
+    /* margin-top: 5rem; */
+}
+
+
+[id^="book_"]{
+    border: 1px solid white;
+    height: 10rem;
+    width: 10rem;
+}
+
+.card{
+    background-color: beige;
+    color: black;
+    height: 15rem;
+}
+
+#remove_b, #read_b{
+    color: black;
+    width: 5rem;
+    /* height: 2rem; */
+    font-size: small;
 }

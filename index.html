@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="main.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Document</title>
@@ -23,18 +24,22 @@
             </div>
         </div>
         <div class="body">
+            
             <div class="books">
             </div>
+
             <div class="popup">
-                <form onsubmit="return mySubmitFunction(event)">
+
+                <form onsubmit="return mySubmitFunction(event)" >
+                    <p id="errormessage"></p>
                     <div class="inputelements">
                         <div>
-                            <div class="textlabel">Title: </div>
-                            <input required type="text" id="title">
+                            <div class="textlabel">*Title: </div>
+                            <input type="text" id="title">
                         </div>
                         <div>
-                            <div class="textlabel">Author: </div>
-                            <input required type="text" id="author">
+                            <div class="textlabel">*Author: </div>
+                            <input type="text" id="author">
                         </div>
                         <div>
                             <div class="textlabel">Pages: </div>
@@ -42,13 +47,19 @@
                         </div>
                         <div>
                             <div class="textlabel">Read: </div>
-                            <input required type="checkbox" id="read">
+                            <input type="checkbox" id="read">
+                        </div>
+                        <div class="bookadd">
+                            <button type="submit" id="book_to_add">Add this book</button>
                         </div>
                     </div>
-                    <div class="bookadd"><button id="book_to_add">Add this book</button></div>
                 </form>
+                <div>
+                    <p id="infotext">* marked fields are nesseceray - Titel has to be longer than 3 char</p>
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+

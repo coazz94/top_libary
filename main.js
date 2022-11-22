@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button_add.addEventListener("click", () => {
 
         if (addBookToLibary()){
+            console.log("here")
             enablePopup(false);
             loadBooks();
         }
@@ -39,21 +40,73 @@ function enablePopup(state){
 
 }
 
-function Book(title, author, read, pages=0, id){
-    this.title = title
-    this.author = author
-    this.read = read
-    this.pages = pages
 
-    this.status = read ? "read" : "not read"
- }
+
+class Books {
+    constructor(
+        title = "none",
+        author = "none",
+        pages = 0,
+        status = "not read",
+
+    ) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+
+    changeStatus(status){
+        this.status = status;
+    }
+}
+
+
+class Libary {
+    constructor(){
+        this.books = []
+    }
+
+    addBook(newBook){
+        this.books.push(newBook)
+    }
+
+    removeBook(title){
+        this.books = this.books.filter((e) => e.title != title)
+    }
+
+    loadBooks(){
+        return this.books
+    }
+
+    getPosition(book){
+        return this.books.indexOf(book)
+    }
+
+    markAsRead(title){
+        for(let i = 0; i < this.books.length; i++){
+            if(this.books[i].title === title){
+                let status = this.books[i].status === "read" ? "not read": "read";
+                this.books[i].changeStatus(status);
+            }
+        }
+    }
+
+
+}
+
+
+const libary = new Libary;
+
 
 function addBooks(){
-    const book1 = new Book("Harry Potter 1", "JKK", false, "555")
-    const book2 = new Book("Harry Potter 2", "AFK", false, "365")
-    const book3 = new Book("Harry Potter 3", "Nugato", false, "365")
+    const book1 = new Books ("Harry Potter 1", "JKK", "555");
+    const book2 = new Books ("Harry Potter 2", "AFK","365");
+    const book3 = new Books ("Harry Potter 3", "Nugato","365");
 
-    myLibary.push(book1, book2, book3)
+    libary.addBook(book1)
+    libary.addBook(book2)
+    libary.addBook(book3)
 }
 
 function loadBooks(){
@@ -64,32 +117,35 @@ function loadBooks(){
     // get the place where to books are gonna be stored
     const books_div = document.querySelector(".books");
 
+    let lib = libary.loadBooks()
+
+
     // loop over the Array with the books and add add for each book a new div
-    for(let i = 0; i < myLibary.length; i++){
+    for(let i = 0; i < lib.length; i++){
+
 
         // make the variables needed
-        let book = myLibary[i]
-        let read = book.read ? "read": "not read"
+        let book = lib[i]
         let pages = parseInt(book.pages) > 0 ? book.pages : "/";
-        let id = myLibary.indexOf(myLibary[i])
 
         // new book, id= book + counter
         let book_el = document.createElement("div");
         book_el.className=`card book_${i+1}`;
-
         // new cardbody
         let card_body = document.createElement("div");
         card_body.className=`card-body`;
+
+        console.log(book.status)
 
         // make a card element fot each book
         card_body.innerHTML = `
           <h5 class="card-title">${book.title}</h5>
           <p class="card-text">Author: ${book.author} </p>
           <p class="card-text">Pages: ${pages} </p>
-          <p class="card-text"> ${read}</p>
+          <p class="card-text"> ${book.status}</p>
         `
         // make the buttons
-        let buttons = makeButtonsForCard(id);
+        let buttons = makeButtonsForCard(book.title);
 
         card_body.append(buttons)
 
@@ -102,7 +158,7 @@ function loadBooks(){
     }
 }
 
-function makeButtonsForCard(id){
+function makeButtonsForCard(title){
 
         // make  div for the button
         let buttons= document.createElement("div");
@@ -113,10 +169,12 @@ function makeButtonsForCard(id){
         remove_b.setAttribute("id", `remove_b`);
         remove_b.innerHTML = "remove this book";
 
+
+
         // add a Eventlistenr to the button
         remove_b.addEventListener("click", () => {
             // delete the element at the position id, load the books again
-            myLibary.splice(id, 1)
+            libary.removeBook(title)
             loadBooks()
         })
 
@@ -127,7 +185,7 @@ function makeButtonsForCard(id){
         // add a Eventlistenr to the button
         read_b.addEventListener("click", () => {
             // Change the status of the object by its lasts state
-            myLibary[id].read ?  myLibary[id].read = false : myLibary[id].read = true
+            libary.markAsRead(title);
             loadBooks()
         })
 
@@ -146,13 +204,14 @@ function addBookToLibary(){
     const pages = document.querySelector("#pages");
     const read = document.querySelector("#read");
 
+
     // Check if the title author
     let state = checkInput(title.value, author.value);
 
     // if so, proceed and make a new book and add it to the libary
     if (state){
-        let book = new Book(title.value, author.value, read.checked, pages.value);
-        myLibary.push(book);
+        let book = new Books(title.value, author.value, pages.value, read.checked);
+        libary.addBook(book);
         // clean the input fields
         cleanPopup(title, author, read, pages);
         // Return True
